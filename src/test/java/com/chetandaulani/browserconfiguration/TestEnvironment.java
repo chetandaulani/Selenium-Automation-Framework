@@ -22,10 +22,13 @@ public class TestEnvironment {
 		WebDriver driver;
 		switch (browserName.toLowerCase()) {
 		case "chrome":
-			// Set ChromeOptions for incognito mode
-			ChromeOptions chromeOptions = new ChromeOptions();
-			chromeOptions.addArguments("--incognito");
-			driver = new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--headless=new"); // or just "--headless"
+			options.addArguments("--no-sandbox");
+			options.addArguments("--disable-dev-shm-usage");
+			options.addArguments("--disable-gpu");
+			options.addArguments("--window-size=1920,1080");
+			driver = new ChromeDriver(options);
 			break;
 
 		case "firefox":
